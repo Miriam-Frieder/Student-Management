@@ -1,0 +1,25 @@
+
+<ul>
+    @for(student of students; track student.id){
+    <li>
+        <p>
+            {{student.firstName}} {{student.lastName}}, grade: {{student.grade}} 
+        </p>
+        <button (click)="removeStudent(student.id)">remove</button>
+        <button (click)="resetStudent(student.id)">reset</button>
+        @if(studentResetting==student.id){
+            <app-reset-student
+            [student]="student" 
+            (studentNewDetails)="changeStudentDetails($event)"
+            ></app-reset-student>
+        }
+    </li>
+    }
+</ul>
+<button (click)="addStudent()">add atudent</button>
+@if(studentAdding){
+    <app-add-student 
+    (studentDetails)="addStudentDetails($event)">
+    </app-add-student>
+
+}
