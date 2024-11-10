@@ -1,4 +1,4 @@
-import { Component, Input, Output,EventEmitter } from '@angular/core';
+import { Component, Input, Output,EventEmitter, viewChild } from '@angular/core';
 import { Student } from '../../models/student/student';
 import { log } from 'console';
 
@@ -12,7 +12,7 @@ import { log } from 'console';
 export class ResetStudentComponent {
 
   @Input()
-  student!: Student;
+  student: Student;
   @Output()
   studentNewDetails:EventEmitter<any> = new EventEmitter<any>();
   saveDetails=(firstName:string,lastName:string,grade:string,address:string,phoneNumber:string,scoreAvg:string,active:boolean)=>{

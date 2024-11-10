@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild} from '@angular/core';
 import { Student } from '../../models/student/student';
 import { ResetStudentComponent } from "../reset-student/reset-student.component";
 import { AddStudentComponent } from "../add-student/add-student.component";
@@ -16,6 +16,7 @@ export class StudentsListComponent {
   ]
   studentResetting = -1;
   studentAdding = false;
+  @ViewChild(ResetStudentComponent)reset:ResetStudentComponent;
   removeStudent = (id: number) => {
     const newStudents = this.students.filter(student => student.id != id);
     this.students = newStudents;

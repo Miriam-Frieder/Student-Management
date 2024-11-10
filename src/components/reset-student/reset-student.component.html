@@ -1,7 +1,4 @@
-@if(!student.isActive){
-   Student left: {{student.leaveDate?.toISOString()}}
-}
-@else {
+
 <h3>Enter new details:</h3>
 <label for="firstName">First name</label>
 <input #fn type="text" [value]="student.firstName" name="firstName" >
@@ -20,4 +17,3 @@
 
 <button 
 (click)="saveDetails(fn.value,ln.value, grade.value,adress.value,phone.value,avg.value,active.checked)">save</button> 
-}
