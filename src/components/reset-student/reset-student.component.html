@@ -13,7 +13,12 @@
 <label for="avg">Score average</label>
 <input #avg type="number" [value]="student.scoreAvg" name="avg" >
 <label for="active">Active?</label>
-<input #active type="checkbox" [checked]="student.isActive"  name="active" >
+<input #active type="checkbox" [checked]="student.isActive"  name="active" (change)="handleChange(active.checked)">
+@if(!student.isActive){
+    <label for="Leaving_Date">Leaving Date</label>
+    <input #dateLeft type="date" [value]="convertDatToString(student.leaveDate)" name="Leaving_Date"  >
+}
+
 
 <button 
 (click)="saveDetails(fn.value,ln.value, grade.value,adress.value,phone.value,avg.value,active.checked)">save</button> 

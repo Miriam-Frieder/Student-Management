@@ -16,7 +16,6 @@ export class StudentsListComponent {
   ]
   studentResetting = -1;
   studentAdding = false;
-  @ViewChild(ResetStudentComponent)reset:ResetStudentComponent;
   removeStudent = (id: number) => {
     const newStudents = this.students.filter(student => student.id != id);
     this.students = newStudents;
@@ -33,8 +32,8 @@ export class StudentsListComponent {
         original.adress = newStud.adress,
         original.isActive = newStud.isActive,
         original.phoneNumber = newStud.phoneNumber,
-        original.scoreAvg = newStud.scoreAvg
-
+        original.scoreAvg = newStud.scoreAvg,
+        original.leaveDate=newStud.leaveDate
       console.log(original);
 
     }

@@ -1,4 +1,4 @@
-import { Component, Input, Output,EventEmitter, viewChild } from '@angular/core';
+import { Component, Input, Output,EventEmitter, viewChild, ViewChild, ElementRef } from '@angular/core';
 import { Student } from '../../models/student/student';
 import { log } from 'console';
 
@@ -15,12 +15,21 @@ export class ResetStudentComponent {
   student: Student;
   @Output()
   studentNewDetails:EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('dateLeft')dateLeft:ElementRef<HTMLInputElement>;
   saveDetails=(firstName:string,lastName:string,grade:string,address:string,phoneNumber:string,scoreAvg:string,active:boolean)=>{
-    if(!active)
-      this.student.leaveDate=new Date();
+    
     const newStudent=new Student(-1,firstName,lastName,Number(grade),address,phoneNumber,Number(scoreAvg),active);
+    newStudent.leaveDate=this.dateLeft?new Date(this.dateLeft.nativeElement.value):undefined;
     this.studentNewDetails.emit(newStudent);
   };
-isActive: any;
+  handleChange=(isActive:boolean)=>{
+    this.student.isActive=isActive;
+
+  }
+  convertDatToString=(date:Date|undefined)=>date?date.toISOString().split('T')[0]:"";
+  
+
+
+
 
 }
