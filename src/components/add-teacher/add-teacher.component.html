@@ -1,0 +1,13 @@
+<h3>Enter Details:</h3>
+<label for="name">name:</label>
+<input #name type="text" name="name">
+<p>classes:</p>
+<div>
+    @for(class of classes; track class){
+    <div>
+        <input #c (change)="handleChange(c.name,c.checked)" type="checkbox" [name]="class">
+        <label [for]="class">{{class}}</label>
+    </div>
+    }
+</div>
+<button (click)="saveDetails(name.value)">save</button>

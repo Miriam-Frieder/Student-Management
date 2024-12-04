@@ -1,0 +1,7 @@
+<div class="popup-overlay">
+    <div class="popup-content" (click)="$event.stopPropagation()">
+        <ng-content select="[header]"></ng-content>
+        <ng-content select="[body]"></ng-content>
+        <ng-content select="[footer]"></ng-content>
+    </div>
+</div>

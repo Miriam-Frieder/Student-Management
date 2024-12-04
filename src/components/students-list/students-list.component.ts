@@ -1,28 +1,40 @@
 import { Component, ViewChild} from '@angular/core';
-import { Student } from '../../models/student/student';
+import { Student } from '../../models/student/student.model';
 import { ResetStudentComponent } from "../reset-student/reset-student.component";
 import { AddStudentComponent } from "../add-student/add-student.component";
+import { InformationCardComponent } from "../information-card/information-card.component";
 
 @Component({
   selector: 'app-students-list',
   standalone: true,
-  imports: [ResetStudentComponent, AddStudentComponent],
+  imports: [ResetStudentComponent, AddStudentComponent, InformationCardComponent],
   templateUrl: './students-list.component.html',
   styleUrl: './students-list.component.css'
 })
 export class StudentsListComponent {
   students = [
-    new Student(0, "angular", "cli", 17, "web", "1234567890", 100, true, new Date())
+    new Student(0, "angular", "cli", 17, "web", "1234567890", 100, true, new Date(),true),
+    new Student(1, "react", "vite", 20, "web", "1234567890", 100, true, new Date(),false),
   ]
   studentResetting = -1;
   studentAdding = false;
-  removeStudent = (id: number) => {
-    const newStudents = this.students.filter(student => student.id != id);
+  studentRemoving=-1;
+  
+
+  showRemovePopup=(id:number)=>this.studentRemoving=id;
+  
+  closeRemovePopup=()=>this.studentRemoving=-1;
+
+  removeStudent = () => {
+    const newStudents = this.students.filter(student => student.id != this.studentRemoving);
     this.students = newStudents;
+    this.closeRemovePopup();
   }
+
   resetStudent = (id: number) => {
     this.studentResetting = id;
   }
+  
   changeStudentDetails = (newStud: Student) => {
     let original: Student | undefined = this.students.find(student => student.id == this.studentResetting);
     if (original) {

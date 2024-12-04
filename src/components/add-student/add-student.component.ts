@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Student } from '../../models/student/student';
+import { Student } from '../../models/student/student.model';
 
 
 @Component({

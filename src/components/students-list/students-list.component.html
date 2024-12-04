@@ -1,25 +1,35 @@
-
+<h2>Students</h2>
 <ul>
     @for(student of students; track student.id){
     <li>
         <p>
-            {{student.firstName}} {{student.lastName}}, grade: {{student.grade}} 
+            {{student.firstName}} {{student.lastName}}, grade: {{student.grade}}
         </p>
-        <button (click)="removeStudent(student.id)">remove</button>
+        <button (click)="showRemovePopup(student.id)">remove</button>
         <button (click)="resetStudent(student.id)">reset</button>
         @if(studentResetting==student.id){
-            <app-reset-student
-            [student]="student" 
-            (studentNewDetails)="changeStudentDetails($event)"
-            ></app-reset-student>
+        <app-reset-student [student]="student" (studentNewDetails)="changeStudentDetails($event)"></app-reset-student>
         }
     </li>
     }
 </ul>
-<button (click)="addStudent()">add atudent</button>
+<button (click)="addStudent()">add student</button>
 @if(studentAdding){
-    <app-add-student 
-    (studentDetails)="addStudentDetails($event)">
-    </app-add-student>
+<app-add-student (studentDetails)="addStudentDetails($event)">
+</app-add-student>
 
+}
+@if(studentRemoving!=-1){
+<app-information-card #remove>
+    <div header>
+        <h2>Alert⚠️</h2>
+    </div>
+    <div body>
+        <p>Are you sure you want to permanently delete the student?</p>
+    </div>
+    <div footer>
+        <button (click)="removeStudent()">Ok</button>
+        <button (click)="closeRemovePopup()">Cancel</button>
+    </div>
+</app-information-card>
 }

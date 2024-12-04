@@ -1,0 +1,31 @@
+<h2>Teachers</h2>
+<ul>
+    @for(teacher of teachers;track teacher.id){
+    <li [hasClass]="teacher.classId">
+        <p>{{teacher.name}} classes:{{teacher.classId}}</p>
+        <button (click)="showRemovePopup(teacher.id)">remove</button>
+
+    </li>
+    }
+</ul>
+
+<button (click)="addTeacher()">add teacher</button>
+
+@if(teacherAdding){
+<app-add-teacher #addComponent [classes]="classes" (teacherDetails)="saveDetails($event)"></app-add-teacher>
+}
+
+@if(teacherRemoving!=-1){
+<app-information-card #remove>
+    <div header>
+        <h2>Alert⚠️</h2>
+    </div>
+    <div body>
+        <p>Are you sure you want to permanently delete the teacher?</p>
+    </div>
+    <div footer>
+        <button (click)="removeTeacher()">Ok</button>
+        <button (click)="closeRemovePopup()">Cancel</button>
+    </div>
+</app-information-card>
+}

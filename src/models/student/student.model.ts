@@ -9,6 +9,7 @@ export class Student{
         public scoreAvg:number,
         public isActive:boolean,
         public leaveDate?:Date,
+        public isPaid?:boolean
         ){}
     
 
