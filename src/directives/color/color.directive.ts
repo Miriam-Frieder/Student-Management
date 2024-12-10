@@ -7,7 +7,7 @@ import { Directive, ElementRef, HostListener, Input, SimpleChanges } from '@angu
 export class ColorDirective {
 
   @Input()
-  hasClass: number[] = [];
+  hasClass: boolean;
 
   constructor(private el: ElementRef) {}
 
@@ -18,7 +18,14 @@ export class ColorDirective {
   }
 
   private updateTextColor() {
-    this.el.nativeElement.style.color = this.hasClass.length === 0 ? 'gray' : 'black';
+   if ( this.hasClass){
+      this.el.nativeElement.style.color ='gray';
+   }
+   else{
+    this.el.nativeElement.style.color ='black';
+   }
+
+
   }
  
 }

@@ -1,7 +1,7 @@
 <h2>Teachers</h2>
 <ul>
     @for(teacher of teachers;track teacher.id){
-    <li [hasClass]="teacher.classId">
+    <li [hasClass]="teacher.classId.length===0">
         <p>{{teacher.name}} classes:{{teacher.classId}}</p>
         <button (click)="showRemovePopup(teacher.id)">remove</button>
 

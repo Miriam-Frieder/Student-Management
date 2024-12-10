@@ -5,8 +5,8 @@
         <p>
             {{student.firstName}} {{student.lastName}}, grade: {{student.grade}}
         </p>
-        <button (click)="showRemovePopup(student.id)">remove</button>
-        <button (click)="resetStudent(student.id)">reset</button>
+        <button (click)="showRemovePopup(student.id)">{{'remove' | icon }}</button>
+        <button (click)="resetStudent(student.id)">{{"reset"|icon}}</button>
         @if(studentResetting==student.id){
         <app-reset-student [student]="student" (studentNewDetails)="changeStudentDetails($event)"></app-reset-student>
         }

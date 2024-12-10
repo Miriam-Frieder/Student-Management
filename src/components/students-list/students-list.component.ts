@@ -3,11 +3,13 @@ import { Student } from '../../models/student/student.model';
 import { ResetStudentComponent } from "../reset-student/reset-student.component";
 import { AddStudentComponent } from "../add-student/add-student.component";
 import { InformationCardComponent } from "../information-card/information-card.component";
+import { IconPipe } from '../../pipes/icon/icon.pipe';
+
 
 @Component({
   selector: 'app-students-list',
   standalone: true,
-  imports: [ResetStudentComponent, AddStudentComponent, InformationCardComponent],
+  imports: [ResetStudentComponent, AddStudentComponent, InformationCardComponent,IconPipe],
   templateUrl: './students-list.component.html',
   styleUrl: './students-list.component.css'
 })
@@ -19,7 +21,6 @@ export class StudentsListComponent {
   studentResetting = -1;
   studentAdding = false;
   studentRemoving=-1;
-  
 
   showRemovePopup=(id:number)=>this.studentRemoving=id;
   
