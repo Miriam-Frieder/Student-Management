@@ -1,0 +1,47 @@
+<ng-template #chooseCourses>
+    <p>Choose Courses:</p>
+    @for(course of courses; track course.id){
+    <div>
+        <input type="checkbox" [name]="course.id">
+        <label [for]="course.id">{{course.name}}</label>
+    </div>
+    }
+</ng-template>
+<app-information-card #remove>
+    <div header>
+        <h2>Enter Details</h2>
+    </div>
+    <div body>
+        <form #form="ngForm" (ngSubmit)="onSubmit()">
+            <label for="firstName">First name</label>
+            <input #fn type="text" [(ngModel)]="student.name" name="firstName" required>
+
+            <label for="grade">Grade</label>
+            <input #grade type="number" [(ngModel)]="student.grade" name="grade">
+
+            <label for="adress">Adress</label>
+            <input #adress type="text" [(ngModel)]="student.adress" name="adress">
+
+            <label for="phone">Phone number</label>
+            <input #phone type="text" [(ngModel)]="student.phoneNumber" name="phone">
+
+            <label for="avg">Score average</label>
+            <input #avg type="number" [(ngModel)]="student.scoreAvg" name="avg">
+
+            <label for="active">Active?</label>
+            <input #active type="checkbox" [(ngModel)]="student.isActive" name="active"
+                (change)="handleChange(active.checked)">
+
+            @if(!student.isActive){
+            <label for="Leaving_Date">Leaving Date</label>
+            <input #dateLeft type="date" [(ngModel)]="student.leaveDate" name="Leaving_Date">
+
+            }
+            @if(student.isPaid){
+            <ng-container *ngTemplateOutlet="chooseCourses"></ng-container>
+            }
+            <button type="submit" [disabled]="form.invalid">save</button>
+        </form>
+    </div>
+
+</app-information-card>

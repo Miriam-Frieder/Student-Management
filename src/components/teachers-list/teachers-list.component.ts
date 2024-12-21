@@ -27,14 +27,6 @@ export class TeachersListComponent {
 
   teacherRemoving = -1;
 
-  showRemovePopup = (id: number) => this.teacherRemoving = id;
-
-  closeRemovePopup = () => this.teacherRemoving = -1;
-
-  addTeacher = () => {
-    this.teacherAdding = true;
-  }
-
   saveDetails = (teacher: Teacher) => {
     teacher.id = Math.max(...this.teachers.map(t => t.id), 1) + 1;
     this.teacherService.Add(teacher);
@@ -45,7 +37,7 @@ export class TeachersListComponent {
   removeTeacher = () => {
     this.teacherService.Delete(this.teacherRemoving);
     this.teachers = this.teacherService.get();
-    this.closeRemovePopup();
+    this.teacherRemoving = -1;
   }
 
 

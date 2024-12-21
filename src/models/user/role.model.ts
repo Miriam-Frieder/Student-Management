@@ -1,0 +1,1 @@
+export type Role="director"|"teacher"|"secretary"|"student";

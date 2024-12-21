@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Teacher } from '../../models/teacher/teacher.model';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-teacher',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './add-teacher.component.html',
   styleUrl: './add-teacher.component.css'
 })
