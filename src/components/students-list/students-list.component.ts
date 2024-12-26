@@ -3,12 +3,13 @@ import { Student } from '../../models/student/student.model';
 import { StudentDetailsComponent } from "../student-details/student-details.component";
 import { InformationCardComponent } from "../information-card/information-card.component";
 import { IconPipe } from '../../pipes/icon/icon.pipe';
+import {  MatButtonModule } from '@angular/material/button';
 
 
 @Component({
   selector: 'app-students-list',
   standalone: true,
-  imports: [StudentDetailsComponent, InformationCardComponent,IconPipe],
+  imports: [StudentDetailsComponent, InformationCardComponent,IconPipe,MatButtonModule],
   templateUrl: './students-list.component.html',
   styleUrl: './students-list.component.css'
 })

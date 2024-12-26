@@ -1,28 +1,24 @@
-<app-information-card >
-    <div header>
-        <h2>Enter User Details</h2>
-    </div>
-    <div body>
-        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-            <label for="name">Name:</label>
-            <input id="name" formControlName="name">
-        
-            <label for="role">role:</label>
-            <select id="role" formControlName="role">
-                <option value="director">director</option>
-                <option value="teacher">teacher</option>
-                <option value="secretary">secretary</option>
-                <option value="student">student</option>
-            </select>
-        
-            <label for="email">email:</label>
-            <input id="email" formControlName="email">
-        
-            <label for="password">password:</label>
-            <input id="password" formControlName="password">
-
-            <button type="submit">save</button>
-        
-        </form>
-    </div>
-</app-information-card>
+<div class="sidebar">
+    <h2>Enter User Details</h2>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" />
+  
+      <label for="role">Role:</label>
+      <select id="role" formControlName="role">
+        <option value="director">director</option>
+        <option value="teacher">teacher</option>
+        <option value="secretary">secretary</option>
+        <option value="student">student</option>
+      </select>
+  
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" />
+  
+      <label for="password">Password:</label>
+      <input id="password" formControlName="password" type="password" />
+  
+      <button mat-raised-button type="submit" [disabled]="!userForm.valid">Save</button>
+    </form>
+  </div>
+  

@@ -14,7 +14,7 @@
     <div body>
         <form #form="ngForm" (ngSubmit)="onSubmit()">
             <label for="firstName">First name</label>
-            <input #fn type="text" [(ngModel)]="student.name" name="firstName" required>
+            <input #fn matInput type="text" [(ngModel)]="student.name" name="firstName" required>
 
             <label for="grade">Grade</label>
             <input #grade type="number" [(ngModel)]="student.grade" name="grade">
@@ -40,7 +40,7 @@
             @if(student.isPaid){
             <ng-container *ngTemplateOutlet="chooseCourses"></ng-container>
             }
-            <button type="submit" [disabled]="form.invalid">save</button>
+            <button mat-raised-button  type="submit" [disabled]="form.invalid">save</button>
         </form>
     </div>
 

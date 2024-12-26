@@ -1,19 +1,19 @@
 <h2>Students</h2>
-<ul>
+<ul class="student-list">
     @for(student of students; track student.id){
     <li>
         <p>
             {{student.name}}, grade: {{student.grade}}
         </p>
-        <button (click)="this.studentRemoving=student.id">{{'remove' | icon }}</button>
-        <button (click)="this.studentResetting=student.id">{{"reset"|icon}}</button>
+        <button mat-raised-button (click)="this.studentRemoving=student.id">{{'remove'}}</button>
+        <button mat-raised-button (click)="this.studentResetting=student.id">{{"reset"}}</button>
         @if(studentResetting==student.id){
         <app-student-details [student]="student" (studentNewDetails)="changeStudentDetails($event)"></app-student-details>
         }
     </li>
     }
 </ul>
-<button (click)="this.studentAdding=true">add student</button>
+<button mat-raised-button class="add-button" (click)="this.studentAdding=true">add student</button>
 @if(studentAdding){
     <app-student-details [student]="emptyStudent" (studentNewDetails)="addStudentDetails($event)"></app-student-details>
 }
@@ -26,7 +26,7 @@
         <p>Are you sure you want to permanently delete the student?</p>
     </div>
     <div footer>
-        <button (click)="removeStudent()">Ok</button>
+        <button  (click)="removeStudent()">Ok</button>
         <button (click)="this.studentRemoving=-1">Cancel</button>
     </div>
 </app-information-card>

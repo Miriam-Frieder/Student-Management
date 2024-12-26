@@ -6,13 +6,15 @@ import { Subject } from '../../models/course/subject.enum';
 import { NgTemplateOutlet } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InformationCardComponent } from '../information-card/information-card.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @Component({
   selector: 'app-student-details',
   standalone: true,
-  imports: [NgTemplateOutlet,FormsModule,InformationCardComponent],
+  imports: [NgTemplateOutlet,FormsModule,InformationCardComponent,MatButtonModule,MatInputModule,MatFormFieldModule],
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css'
 })

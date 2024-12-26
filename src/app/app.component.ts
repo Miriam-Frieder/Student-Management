@@ -3,13 +3,15 @@ import { StudentsListComponent } from '../components/students-list/students-list
 import { BlessingComponent } from "../components/blessing/blessing.component";
 import { TeachersListComponent } from "../components/teachers-list/teachers-list.component";
 import { AddUserComponent } from "../components/add-user/add-user.component";
+import {MatButtonModule} from '@angular/material/button';
+
 
 type Blessing ='Good Morning!'|'Good Afternoon!'|'Good Evening!'|'Good Night!';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [StudentsListComponent, BlessingComponent, TeachersListComponent, AddUserComponent],
+  imports: [StudentsListComponent, BlessingComponent, TeachersListComponent, AddUserComponent,MatButtonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -17,7 +19,6 @@ type Blessing ='Good Morning!'|'Good Afternoon!'|'Good Evening!'|'Good Night!';
 export class AppComponent {
   
 
-  addUser:boolean = false;
     
   
 }

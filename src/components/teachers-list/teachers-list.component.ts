@@ -5,11 +5,12 @@ import { AddTeacherComponent } from "../add-teacher/add-teacher.component";
 import { InformationCardComponent } from "../information-card/information-card.component";
 import {ColorDirective} from '../../directives/color/color.directive'
 import { log } from 'console';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-teachers-list',
   standalone: true,
-  imports: [AddTeacherComponent, InformationCardComponent,ColorDirective],
+  imports: [AddTeacherComponent, InformationCardComponent,ColorDirective,MatButtonModule],
   templateUrl: './teachers-list.component.html',
   styleUrl: './teachers-list.component.css'
 })

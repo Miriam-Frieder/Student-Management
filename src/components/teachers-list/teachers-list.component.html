@@ -1,15 +1,15 @@
 <h2>Teachers</h2>
-<ul>
+<ul class="teacher-list">
     @for(teacher of teachers;track teacher.id){
     <li [noClass]="teacher.classId.length===0">
         <p>{{teacher.name}} classes:{{teacher.classId}}</p>
-        <button (click)="this.teacherRemoving=teacher.id">remove</button>
+        <button mat-raised-button (click)="this.teacherRemoving=teacher.id">remove</button>
 
     </li>
     }
 </ul>
 
-<button (click)="this.teacherAdding=true">add teacher</button>
+<button mat-raised-button class="add-button" (click)="this.teacherAdding=true">add teacher</button>
 
 @if(teacherAdding){
 <app-add-teacher #addComponent [classes]="classes" (teacherDetails)="saveDetails($event)"></app-add-teacher>
