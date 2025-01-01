@@ -8,7 +8,7 @@ export class UserService {
 
   constructor() { }
   private users:User[]=[
-    new User(1,"miriam","director","m0556777068","1234")
+    // new User(1,"miriam","director","m0556777068","1234")
   ]
   getAllUsers(): User[] {
     return this.users;
@@ -16,11 +16,10 @@ export class UserService {
   getUser(id: number): User|undefined {
     return this.users.find(u => u.id === id);
   }
-  addUser(user: User): void {
-    user.id = Math.max(...this.users.map(u => u.id)) + 1;  // find max id and increment it by 1
-    this.users.push(user);
+  addUser(user: Omit<User,'id'>): void {
+    this.users.push({...user, id: Math.max(...this.users.map(u => u.id)) + 1});
   }
-  updateUser(id: number, user: User): void {
+  updateUser(id: number, user: Partial<User>): void {
     const index = this.users.findIndex(u => u.id === id);
     if (index !== -1) {
       this.users[index] = {...this.users[index],...user };

@@ -4,13 +4,22 @@ import { Teacher } from '../../models/teacher/teacher.model';
 import { AddTeacherComponent } from "../add-teacher/add-teacher.component";
 import { InformationCardComponent } from "../information-card/information-card.component";
 import {ColorDirective} from '../../directives/color/color.directive'
-import { log } from 'console';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-teachers-list',
   standalone: true,
-  imports: [AddTeacherComponent, InformationCardComponent,ColorDirective,MatButtonModule],
+  imports: [
+     InformationCardComponent,
+     ColorDirective,
+     MatButtonModule,
+     MatCardModule,
+     MatIconModule,
+     FlexLayoutModule],
   templateUrl: './teachers-list.component.html',
   styleUrl: './teachers-list.component.css'
 })
@@ -20,19 +29,24 @@ export class TeachersListComponent {
 
   public classes: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  constructor(private teacherService: TeacherService) {
+  constructor(private teacherService: TeacherService,private dialog: MatDialog) {
     this.teachers = teacherService.get();
   }
 
-  teacherAdding = false;
-
   teacherRemoving = -1;
 
-  saveDetails = (teacher: Teacher) => {
-    teacher.id = Math.max(...this.teachers.map(t => t.id), 1) + 1;
-    this.teacherService.Add(teacher);
-    this.teachers = this.teacherService.get();
-    this.teacherAdding = false;
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddTeacherComponent, {
+      data: { classes: this.classes },  // Pass the classes to the dialog
+    });
+    dialogRef.afterClosed().subscribe(teacher => {
+      if (teacher) {
+        teacher.id = Math.max(...this.teachers.map(t => t.id), 1) + 1;
+        this.teacherService.Add(teacher);
+        this.teachers = this.teacherService.get();
+      }
+    });
   }
 
   removeTeacher = () => {
@@ -40,6 +54,8 @@ export class TeachersListComponent {
     this.teachers = this.teacherService.get();
     this.teacherRemoving = -1;
   }
+
+
 
 
 }

@@ -3,13 +3,32 @@ import { Student } from '../../models/student/student.model';
 import { StudentDetailsComponent } from "../student-details/student-details.component";
 import { InformationCardComponent } from "../information-card/information-card.component";
 import { IconPipe } from '../../pipes/icon/icon.pipe';
-import {  MatButtonModule } from '@angular/material/button';
+
+// Angular Material modules
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogContainer, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 @Component({
   selector: 'app-students-list',
   standalone: true,
-  imports: [StudentDetailsComponent, InformationCardComponent,IconPipe,MatButtonModule],
+  imports: [
+    StudentDetailsComponent, 
+    InformationCardComponent,
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatIconModule,
+    MatToolbarModule,
+    FlexLayoutModule,
+    
+    
+  ],
   templateUrl: './students-list.component.html',
   styleUrl: './students-list.component.css'
 })
@@ -30,18 +49,12 @@ export class StudentsListComponent {
   }
   
   changeStudentDetails = (newStud: Student) => {
-    let original: Student | undefined = this.students.find(student => student.id == this.studentResetting);
+    let original: Student | undefined = this.students.find(student => student.id === this.studentResetting);
     if (original) {
-        original.name=newStud.name;
-        original.grade = newStud.grade,
-        original.adress = newStud.adress,
-        original.isActive = newStud.isActive,
-        original.phoneNumber = newStud.phoneNumber,
-        original.scoreAvg = newStud.scoreAvg,
-        original.leaveDate=newStud.leaveDate
-      console.log(original);
-
+      this.students = this.students.filter(student =>student.id !== this.studentResetting);
+      this.students.push({...newStud, id: this.studentResetting});
     }
+    console.log(original);
     this.studentResetting = -1;
 
   }

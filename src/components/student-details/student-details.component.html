@@ -1,47 +1,78 @@
 <ng-template #chooseCourses>
     <p>Choose Courses:</p>
-    @for(course of courses; track course.id){
-    <div>
-        <input type="checkbox" [name]="course.id">
-        <label [for]="course.id">{{course.name}}</label>
-    </div>
-    }
-</ng-template>
-<app-information-card #remove>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Courses</mat-label>
+      <mat-select [(ngModel)]="selectedCourses" multiple>
+        @for(course of courses; track course.id){
+        <mat-option [value]="course.id.toString()">{{ course.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </ng-template>
+  
+  <app-information-card>
     <div header>
-        <h2>Enter Details</h2>
+      <h2>Enter Details</h2>
     </div>
     <div body>
-        <form #form="ngForm" (ngSubmit)="onSubmit()">
-            <label for="firstName">First name</label>
-            <input #fn matInput type="text" [(ngModel)]="student.name" name="firstName" required>
-
-            <label for="grade">Grade</label>
-            <input #grade type="number" [(ngModel)]="student.grade" name="grade">
-
-            <label for="adress">Adress</label>
-            <input #adress type="text" [(ngModel)]="student.adress" name="adress">
-
-            <label for="phone">Phone number</label>
-            <input #phone type="text" [(ngModel)]="student.phoneNumber" name="phone">
-
-            <label for="avg">Score average</label>
-            <input #avg type="number" [(ngModel)]="student.scoreAvg" name="avg">
-
-            <label for="active">Active?</label>
-            <input #active type="checkbox" [(ngModel)]="student.isActive" name="active"
-                (change)="handleChange(active.checked)">
-
-            @if(!student.isActive){
-            <label for="Leaving_Date">Leaving Date</label>
-            <input #dateLeft type="date" [(ngModel)]="student.leaveDate" name="Leaving_Date">
-
-            }
-            @if(student.isPaid){
-            <ng-container *ngTemplateOutlet="chooseCourses"></ng-container>
-            }
-            <button mat-raised-button  type="submit" [disabled]="form.invalid">save</button>
-        </form>
+      <form #form="ngForm" (ngSubmit)="onSubmit()">
+        <div fxLayout="row" fxLayoutGap="16px" fxLayoutWrap>
+          <!-- First name and grade inputs in one row -->
+          <mat-form-field appearance="outline" class="full-width" fxFlex="50%">
+            <mat-label>First Name</mat-label>
+            <input matInput type="text" [(ngModel)]="student.name" name="firstName" required>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="full-width" fxFlex="50%">
+            <mat-label>Grade</mat-label>
+            <input matInput type="number" [(ngModel)]="student.grade" name="grade">
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row" fxLayoutGap="16px" fxLayoutWrap>
+          <!-- Address and phone number inputs in one row -->
+          <mat-form-field appearance="outline" class="full-width" fxFlex="50%">
+            <mat-label>Address</mat-label>
+            <input matInput type="text" [(ngModel)]="student.adress" name="adress">
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline" class="full-width" fxFlex="50%">
+            <mat-label>Phone Number</mat-label>
+            <input matInput type="text" [(ngModel)]="student.phoneNumber" name="phone">
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row" fxLayoutGap="16px" fxLayoutWrap>
+          <!-- Score average and active checkbox in one row -->
+          <mat-form-field appearance="outline" class="full-width" fxFlex="50%">
+            <mat-label>Score Average</mat-label>
+            <input matInput type="number" [(ngModel)]="student.scoreAvg" name="avg">
+          </mat-form-field>
+  
+          <mat-checkbox [(ngModel)]="student.isActive" name="active" (change)="handleChange(student.isActive)" fxFlex="50%">
+            Active?
+          </mat-checkbox>
+        </div>
+  
+        @if(!student.isActive){
+        <div fxLayout="row" fxLayoutGap="16px" fxLayoutWrap>
+          <mat-form-field appearance="outline" class="full-width" fxFlex="50%">
+            <mat-label>Leaving Date</mat-label>
+            <input matInput type="date" [(ngModel)]="student.leaveDate" name="Leaving_Date">
+          </mat-form-field>
+        </div>
+        }
+  
+        @if(student.isPaid){
+        <h3>Courses</h3>
+        <ng-container *ngTemplateOutlet="chooseCourses"></ng-container>
+        }
+  
+        <div class="dialog-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
+          <button mat-button (click)="this.studentNewDetails.emit(null)">Cancel</button>
+        </div>
+      </form>
     </div>
-
-</app-information-card>
+  </app-information-card>
+  

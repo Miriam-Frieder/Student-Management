@@ -1,6 +1,5 @@
 import { Component, Input, Output,EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Student } from '../../models/student/student.model';
-import { log } from 'console';
 import { Course } from '../../models/course/course.model';
 import { Subject } from '../../models/course/subject.enum';
 import { NgTemplateOutlet } from '@angular/common';
@@ -9,12 +8,24 @@ import { InformationCardComponent } from '../information-card/information-card.c
 import { MatButtonModule } from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
 
 
 @Component({
   selector: 'app-student-details',
   standalone: true,
-  imports: [NgTemplateOutlet,FormsModule,InformationCardComponent,MatButtonModule,MatInputModule,MatFormFieldModule],
+  imports: [
+    NgTemplateOutlet,
+    FormsModule,
+    InformationCardComponent,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatCheckboxModule
+  ],
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css'
 })
@@ -27,11 +38,14 @@ export class StudentDetailsComponent {
   studentNewDetails:EventEmitter<any> = new EventEmitter<any>();
   
   @ViewChild('dateLeft')dateLeft:ElementRef<HTMLInputElement>;
+
+  selectedCourses: number[] = [];
+
   onSubmit=()=>{
     
-    const newStudent={...this.student};
+    // const newStudent={...this.student};
     // newStudent.leaveDate=this.dateLeft?new Date(this.dateLeft.nativeElement.value):undefined;
-    this.studentNewDetails.emit(newStudent);
+    this.studentNewDetails.emit(this.student);
   };
   handleChange=(isActive:boolean)=>{
     this.student.isActive=isActive;

@@ -1,31 +1,38 @@
 <h2>Teachers</h2>
-<ul class="teacher-list">
-    @for(teacher of teachers;track teacher.id){
-    <li [noClass]="teacher.classId.length===0">
-        <p>{{teacher.name}} classes:{{teacher.classId}}</p>
-        <button mat-raised-button (click)="this.teacherRemoving=teacher.id">remove</button>
 
-    </li>
-    }
+<ul class="teacher-list" fxLayout="column" fxLayoutGap="16px">
+  @for(teacher of teachers; track teacher.id){
+  <li [noClass]="teacher.classId.length===0" fxLayout="column" fxLayoutGap="8px">
+    <mat-card>
+      <mat-card-title>{{ teacher.name }}</mat-card-title>
+      <mat-card-content>
+        <p>Classes: {{teacher.classId}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="warn" (click)="this.teacherRemoving = teacher.id">
+          Remove
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </li>
+  }
 </ul>
 
-<button mat-raised-button class="add-button" (click)="this.teacherAdding=true">add teacher</button>
+<button mat-fab color="accent" class="add-button" (click)="openDialog()">
+  <mat-icon>add</mat-icon>
+</button>
 
-@if(teacherAdding){
-<app-add-teacher #addComponent [classes]="classes" (teacherDetails)="saveDetails($event)"></app-add-teacher>
-}
-
-@if(teacherRemoving!=-1){
+@if(teacherRemoving != -1){
 <app-information-card #remove>
-    <div header>
-        <h2>Alert⚠️</h2>
-    </div>
-    <div body>
-        <p>Are you sure you want to permanently delete the teacher?</p>
-    </div>
-    <div footer>
-        <button (click)="removeTeacher()">Ok</button>
-        <button (click)="this.teacherRemoving=-1">Cancel</button>
-    </div>
+  <div header>
+    <h2>Alert ⚠️</h2>
+  </div>
+  <div body>
+    <p>Are you sure you want to permanently delete the teacher?</p>
+  </div>
+  <div footer>
+    <button mat-raised-button color="warn" (click)="removeTeacher()">Ok</button>
+    <button mat-raised-button (click)="this.teacherRemoving = -1">Cancel</button>
+  </div>
 </app-information-card>
 }

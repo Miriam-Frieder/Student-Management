@@ -9,6 +9,11 @@
     "test": "ng test",
     "serve:ssr:my-project": "node dist/my-project/server/server.mjs"
   },
+  "styles": [
+  "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+  "src/styles.css"
+]
+,
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.3.0",
@@ -16,6 +21,7 @@
     "@angular/common": "^17.3.0",
     "@angular/compiler": "^17.3.0",
     "@angular/core": "^17.3.0",
+    "@angular/flex-layout": "^15.0.0-beta.42",
     "@angular/forms": "^17.3.0",
     "@angular/material": "^17.3.10",
     "@angular/platform-browser": "^17.3.0",

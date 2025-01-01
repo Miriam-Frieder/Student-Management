@@ -1,13 +1,23 @@
-<h3>Enter Details:</h3>
-<label for="name">name:</label>
-<input #name type="text" name="name">
-<p>classes:</p>
-<div>
-    @for(class of classes; track class){
-    <div>
-        <input #c (change)="handleChange(c.name,c.checked)" type="checkbox" [name]="class">
-        <label [for]="class">{{class}}</label>
-    </div>
+<div class="container">
+<h3>Enter Details</h3>
+
+<mat-form-field appearance="outline">
+  <mat-label>Name</mat-label>
+  <input matInput #name type="text" name="name" >
+</mat-form-field>
+
+<p>Classes:</p>
+<mat-form-field appearance="outline" >
+  <mat-label>Select Classes</mat-label>
+  <mat-select [(ngModel)]="teacherClasses" name="classes" multiple>
+    @for(class of data.classes; track class){
+      <mat-option [value]="class">{{ class }}</mat-option>
     }
+  </mat-select>
+</mat-form-field>
+
+<div class="dialog-actions">
+  <button mat-raised-button color="primary" (click)="saveDetails(name.value)">Save</button>
+  <button mat-button (click)="dialogRef.close()">Cancel</button>
 </div>
-<button (click)="saveDetails(name.value)">save</button>
+</div>

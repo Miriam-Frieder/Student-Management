@@ -1,24 +1,52 @@
 <div class="sidebar">
-    <h2>Enter User Details</h2>
+    <h2>Login</h2>
     <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <label for="name">Name:</label>
-      <input id="name" formControlName="name" />
+      <mat-form-field class="example-full-width">
+      <mat-label for="name">Name</mat-label>
+      <input id="name" formControlName="name" matInput/>
+      @if (userForm.controls['name'].hasError('required')) {
+        <mat-error>Name is <strong>required</strong></mat-error>
+      }
+      @if (userForm.controls['name'].hasError('minlength')) {
+        <mat-error>At least 2 characters required</mat-error>
+      }
+    </mat-form-field>
   
-      <label for="role">Role:</label>
-      <select id="role" formControlName="role">
-        <option value="director">director</option>
-        <option value="teacher">teacher</option>
-        <option value="secretary">secretary</option>
-        <option value="student">student</option>
-      </select>
-  
-      <label for="email">Email:</label>
-      <input id="email" formControlName="email" />
-  
-      <label for="password">Password:</label>
-      <input id="password" formControlName="password" type="password" />
+    <mat-form-field class="example-full-width">
+      <mat-label for="role">Role</mat-label>
+      <mat-select id="role">
+        <mat-option value="director">Director</mat-option>
+        <mat-option value="teacher">Teacher</mat-option>
+        <mat-option value="secretary">Secretary</mat-option>
+        <mat-option value="student">Student</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+      <mat-label for="email">Email</mat-label>
+      <input id="email" formControlName="email" matInput />
+      @if (userForm.controls['email'].hasError('required')) {
+        <mat-error>Email is <strong>required</strong></mat-error>
+      }
+      @if (userForm.controls['email'].hasError('email')) {
+        <mat-error>Email is not valid</mat-error>
+      }
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+      <mat-label for="password">Password</mat-label>
+      <input id="password" formControlName="password" type="password" matInput/>
+      @if (userForm.controls['password'].hasError('required')) {
+        <mat-error>Password is <strong>required</strong></mat-error>
+      }
+      @if (userForm.controls['password'].hasError('minlength')) {
+        <mat-error>At least 8 characters required</mat-error>
+      }
+      </mat-form-field>
   
       <button mat-raised-button type="submit" [disabled]="!userForm.valid">Save</button>
+
+      
     </form>
   </div>
   
