@@ -14,7 +14,13 @@
 
       <!-- כפתור Login (יישור לצד ימין) -->
       <div fxFlex fxLayoutAlign="end center">
+        @if(!authService.isAuth){
         <a routerLink="/login" mat-button>Login</a>
+        <a routerLink="/register" mat-button>Sign up</a>
+        }
+        @else {
+        <button mat-button (click)="logout()">Log out</button>
+        }
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

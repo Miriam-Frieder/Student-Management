@@ -50,7 +50,7 @@ export class StudentsListComponent {
   
   changeStudentDetails = (newStud: Student) => {
     let original: Student | undefined = this.students.find(student => student.id === this.studentResetting);
-    if (original) {
+    if (original&&newStud) {
       this.students = this.students.filter(student =>student.id !== this.studentResetting);
       this.students.push({...newStud, id: this.studentResetting});
     }
