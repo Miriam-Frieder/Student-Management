@@ -1,0 +1,17 @@
+<div class="product-list" fxLayout="row" fxLayoutWrap fxLayoutGap="20px">
+    @for(product of products;track product.id)
+    {
+    <mat-card class="product-item">
+      <mat-card-header>
+        <mat-card-title>{{ product.name }}</mat-card-title>
+        <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
+      </mat-card-header>
+      <a>
+        <img mat-card-image [src]="product.img" alt="{{ product.name }}" />
+      </a>      <mat-card-actions>
+        <button mat-button>Add to Cart</button>
+      </mat-card-actions>
+    </mat-card>
+}
+  </div>
+  

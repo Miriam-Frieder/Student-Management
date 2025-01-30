@@ -1,18 +1,16 @@
 <div style="height: 10vh;">
   <mat-toolbar color="primary">
     <mat-toolbar-row class="navbar">
-      <!-- כפתור התפריט (מוצג רק במסכים קטנים) -->
       <button mat-icon-button fxShow fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
       </button>
 
-      <!-- קישורים (מוצגים רק במסכים בינוניים ומעלה) -->
       <div fxFlex fxShow fxHide.lt-md>
         <a routerLink="/students" mat-button>Students</a>
         <a routerLink="/teachers" mat-button>Teachers</a>
+        <a routerLink="/products" mat-button>Products</a>
       </div>
 
-      <!-- כפתור Login (יישור לצד ימין) -->
       <div fxFlex fxLayoutAlign="end center">
         @if(!authService.isAuth){
         <a routerLink="/login" mat-button>Login</a>
